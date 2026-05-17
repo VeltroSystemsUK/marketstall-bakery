@@ -50,8 +50,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "800g loaf",
     stock: 80,
     images: [
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80",
-      "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80",
+      "/images/sourdough.jpg",
     ],
     dietary: ["vegan", "dairy-free"],
     allergens: ["gluten"],
@@ -74,7 +73,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "750g loaf",
     stock: 50,
     images: [
-      "https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=800&q=80",
+      "/images/croissants.jpg",
     ],
     dietary: ["vegan", "dairy-free"],
     allergens: ["gluten", "sesame"],
@@ -97,7 +96,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "pack of 4",
     stock: 60,
     images: [
-      "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80",
+      "/images/focaccia.jpg",
     ],
     dietary: ["vegetarian"],
     allergens: ["gluten", "dairy", "eggs"],
@@ -120,7 +119,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "700g loaf",
     stock: 35,
     images: [
-      "https://images.unsplash.com/photo-1606101273945-e9eba14a6d24?w=800&q=80",
+      "/images/seeded-rye.jpg",
     ],
     dietary: ["vegetarian"],
     allergens: ["gluten", "dairy", "eggs"],
@@ -143,7 +142,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "serves 4",
     stock: 40,
     images: [
-      "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800&q=80",
+      "/images/sourdough.jpg",
     ],
     dietary: ["vegan", "dairy-free"],
     allergens: ["gluten"],
@@ -165,7 +164,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "4 loaves/week",
     stock: 999,
     images: [
-      "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80",
+      "/images/croissants.jpg",
     ],
     dietary: ["vegan"],
     allergens: ["gluten"],
@@ -187,7 +186,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "pack of 4",
     stock: 45,
     images: [
-      "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=800&q=80",
+      "/images/focaccia.jpg",
     ],
     dietary: ["vegetarian"],
     allergens: ["gluten", "dairy", "eggs"],
@@ -209,7 +208,7 @@ export const MOCK_PRODUCTS: Product[] = [
     unit: "800g loaf",
     stock: 100,
     images: [
-      "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=800&q=80",
+      "/images/seeded-rye.jpg",
     ],
     dietary: ["vegetarian"],
     allergens: ["gluten", "dairy"],
