@@ -1,40 +1,34 @@
-/**
- * site.config.ts — edit this file when deploying for a new client.
- *
- * MODE GUIDE
- * ----------
- * marketplace   Multi-producer platform. Full admin, producer onboarding,
- *               Stripe Connect commission splits. Sell to farmers market
- *               organisers, collectives, or aggregators.
- *
- * single-store  One brand, one producer's products. Direct Stripe checkout
- *               (no commission). Sell to individual farms, bakeries, etc.
- */
-
 import type { SiteConfig } from "@/lib/site-config.types";
 
 const config: SiteConfig = {
-  mode: "marketplace",
+  mode: "single-store",
 
   brand: {
-    name: "MarketStall",
-    tagline: "Your local market, delivered",
+    name: "Hearth & Grain Bakery",
+    tagline: "Slow-fermented, wood-fired artisan bread from Lincolnshire",
     description:
-      "Connecting East Midlands farmers and artisan producers directly with people who love great food. Every order supports a local family.",
-    email: "hello@marketstall.co.uk",
-    location: "East Midlands",
-    foundedYear: 2024,
-    socialInstagram: "https://instagram.com",
-    socialFacebook: "https://facebook.com",
+      "We bake every loaf using long fermentation and traditional stone-milling. No commercial yeast, no shortcuts — just flour, water, salt, and time. Baked fresh every morning and delivered across the county.",
+    email: "hello@hearthandgrain.co.uk",
+    location: "Lincoln, Lincolnshire",
+    foundedYear: 2016,
+    socialInstagram: "https://instagram.com/hearthandgrainbakery",
+    socialFacebook: "https://facebook.com/hearthandgrain",
   },
 
   features: {
-    producerOnboarding: true,
-    adminPanel: true,
-    multiProducer: true,
-    stripeConnect: true,
+    producerOnboarding: false,
+    adminPanel: false,
+    multiProducer: false,
+    stripeConnect: false,
     reviews: true,
   },
+
+  stats: [
+    { value: "400+", label: "Loaves Baked Weekly" },
+    { value: "18+", label: "Bread Varieties" },
+    { value: "4.8★", label: "Average Rating" },
+    { value: "Est. 2016", label: "Lincolnshire" },
+  ],
 };
 
 export default config;

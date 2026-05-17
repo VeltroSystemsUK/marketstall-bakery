@@ -3,45 +3,64 @@ import Link from "next/link";
 import config from "@/site.config";
 import {
   ArrowRight,
-  MapPin,
   Star,
   ShieldCheck,
   Truck,
   RefreshCw,
-  Leaf,
+  Wheat,
+  PackageCheck,
+  Flame,
 } from "lucide-react";
-import ProducerCard from "@/components/producers/ProducerCard";
 import ProductCard from "@/components/products/ProductCard";
-import { MOCK_PRODUCERS, MOCK_PRODUCTS, MOCK_REVIEWS } from "@/lib/mock-data";
-import { CATEGORIES } from "@/lib/types";
+import { MOCK_PRODUCTS, MOCK_REVIEWS, MOCK_PRODUCERS } from "@/lib/mock-data";
 
-const SEASONAL_PRODUCTS = MOCK_PRODUCTS.filter((p) => p.featured).slice(0, 4);
-const FEATURED_PRODUCERS = MOCK_PRODUCERS.slice(0, 3);
+const FEATURED_PRODUCTS = MOCK_PRODUCTS.filter((p) => p.featured).slice(0, 4);
+const PRODUCER = MOCK_PRODUCERS[0];
 
-const HOW_IT_WORKS = [
-  {
-    icon: MapPin,
-    title: "Discover local producers",
-    body: "Browse farms and artisans across the East Midlands. Read their stories, see their methods, and find your favourites.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Order with confidence",
-    body: "Secure checkout, flexible fulfilment — delivery to your door, click & collect, or consolidated market-day drops.",
-  },
-  {
-    icon: Leaf,
-    title: "Taste the difference",
-    body: "Food picked and prepared at its best, not weeks early for a distribution centre. You'll taste why it matters.",
-  },
-];
-
-const STATS = [
+const MARKETPLACE_STATS = [
   { value: "150+", label: "Local Producers" },
   { value: "2,000+", label: "Products Listed" },
   { value: "12,000+", label: "Happy Customers" },
   { value: "4 Counties", label: "East Midlands" },
 ];
+
+const STATS = config.stats ?? MARKETPLACE_STATS;
+
+const HOW_IT_WORKS = config.features.multiProducer
+  ? [
+      {
+        icon: Wheat,
+        title: "Discover local producers",
+        body: "Browse farms and artisans across the East Midlands. Read their stories, see their methods, and find your favourites.",
+      },
+      {
+        icon: ShieldCheck,
+        title: "Order with confidence",
+        body: "Secure checkout, flexible fulfilment — delivery to your door or click & collect from the farm.",
+      },
+      {
+        icon: PackageCheck,
+        title: "Taste the difference",
+        body: "Food grown and prepared at its best. You'll taste why it matters.",
+      },
+    ]
+  : [
+      {
+        icon: Wheat,
+        title: "Browse the bakery",
+        body: "Explore our full range of slow-fermented sourdoughs, ancient grain loaves, and freshly laminated pastries — each one baked to order.",
+      },
+      {
+        icon: ShieldCheck,
+        title: "Order securely",
+        body: "Checkout in seconds with Stripe-powered payment. Choose next-morning delivery or collect directly from the bakery.",
+      },
+      {
+        icon: PackageCheck,
+        title: "Baked and dispatched same morning",
+        body: "We bake from 4am and dispatch by 8am. Your bread arrives fresh, never pre-packaged from a warehouse shelf.",
+      },
+    ];
 
 export default function HomePage() {
   return (
@@ -49,8 +68,8 @@ export default function HomePage() {
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=85"
-          alt="East Midlands farmland at golden hour"
+          src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1600&q=85"
+          alt="Freshly baked artisan sourdough loaves on a wooden board"
           fill
           priority
           sizes="100vw"
@@ -60,37 +79,36 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
-            <Leaf className="h-3.5 w-3.5 text-harvest-400" />
-            East Midlands · Local &amp; Seasonal · Since 2024
+            <Flame className="h-3.5 w-3.5 text-harvest-400" />
+            {config.brand.location} · Wood-Fired · Est.{" "}
+            {config.brand.foundedYear}
           </div>
           <h1 className="font-display mb-6 text-5xl font-bold leading-tight text-balance sm:text-6xl lg:text-7xl">
-            Food grown with
+            Bread worth
             <span className="block italic text-harvest-400">
-              passion, not profit.
+              waking up for.
             </span>
           </h1>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-white/85 sm:text-xl">
-            Shop directly from the farmers and artisans who grow, raise, and
-            craft your food. Know their names. Know their land. Taste the
-            difference.
+            {config.brand.tagline}. Long fermentation, real ingredients, baked
+            in a wood-fired stone oven every single morning.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 rounded-2xl bg-harvest-500 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-harvest-600 hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-2xl bg-harvest-500 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-harvest-600 hover:shadow-xl"
             >
-              Shop the market <ArrowRight className="h-4 w-4" />
+              Shop our bread <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/producers"
+              href={`/producers/${PRODUCER.slug}`}
               className="inline-flex items-center gap-2 rounded-2xl border border-white/30 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
             >
-              Meet producers
+              Our story
             </Link>
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="h-10 w-6 rounded-full border-2 border-white/40 p-1">
             <div className="h-2 w-full rounded-full bg-white/60" />
@@ -114,82 +132,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── IN SEASON NOW ──────────────────────────────────────── */}
+      {/* ── FEATURED PRODUCTS ──────────────────────────────────── */}
       <section className="section-pad bg-cream">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex items-end justify-between">
             <div>
               <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-harvest-600">
-                Right now
+                Fresh from the oven
               </p>
               <h2 className="font-display text-4xl font-bold text-gray-900">
-                In season &amp; featured
+                Today&apos;s bake
               </h2>
             </div>
             <Link
-              href="/shop?seasonal=true"
+              href="/shop"
               className="hidden items-center gap-1 text-sm font-medium text-forest-700 hover:text-forest-900 sm:flex"
             >
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {SEASONAL_PRODUCTS.map((product) => (
+            {FEATURED_PRODUCTS.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
           <div className="mt-8 text-center sm:hidden">
-            <Link
-              href="/shop?seasonal=true"
-              className="text-sm font-medium text-forest-700"
-            >
-              View all seasonal products →
+            <Link href="/shop" className="text-sm font-medium text-forest-700">
+              View full range →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── CATEGORIES ─────────────────────────────────────────── */}
-      <section className="section-pad bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-harvest-600">
-              Browse by
-            </p>
-            <h2 className="font-display text-4xl font-bold text-gray-900">
-              Shop by category
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {CATEGORIES.slice(0, 10).map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/shop?category=${cat.id}`}
-                className="card-hover group flex flex-col items-center gap-3 rounded-2xl border border-gray-100 bg-cream p-6 text-center transition-colors hover:border-forest-200 hover:bg-forest-50"
-              >
-                <span className="text-4xl">{cat.emoji}</span>
-                <span className="text-sm font-medium text-gray-700 group-hover:text-forest-700">
-                  {cat.label}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FEATURED PRODUCERS ─────────────────────────────────── */}
-      <section className="section-pad relative overflow-hidden bg-forest-950">
-        <div className="absolute inset-0 opacity-5">
-          <Image
-            src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=60"
-            alt=""
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 flex items-end justify-between">
-            <div>
+      {/* ── OUR STORY ─────────────────────────────────────────── */}
+      {config.features.multiProducer ? (
+        <section className="section-pad relative overflow-hidden bg-forest-950">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10">
               <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-harvest-500">
                 The people behind your food
               </p>
@@ -197,35 +176,67 @@ export default function HomePage() {
                 Meet our producers
               </h2>
             </div>
-            <Link
-              href="/producers"
-              className="hidden items-center gap-1 text-sm font-medium text-forest-300 hover:text-white sm:flex"
-            >
-              See all <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="mt-10 text-center">
+              <Link
+                href="/producers"
+                className="inline-flex items-center gap-2 rounded-2xl border border-forest-700 px-6 py-3 text-sm font-medium text-forest-300 transition-colors hover:border-harvest-500 hover:text-harvest-400"
+              >
+                See all producers →
+              </Link>
+            </div>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {FEATURED_PRODUCERS.map((producer) => (
-              <ProducerCard key={producer.id} producer={producer} />
-            ))}
+        </section>
+      ) : (
+        <section className="section-pad relative overflow-hidden bg-forest-950">
+          <div className="absolute inset-0 opacity-10">
+            <Image
+              src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=1600&q=60"
+              alt=""
+              fill
+              className="object-cover object-center"
+            />
           </div>
-          <div className="mt-10 text-center">
-            <Link
-              href="/producer/onboarding"
-              className="inline-flex items-center gap-2 rounded-2xl border border-forest-700 px-6 py-3 text-sm font-medium text-forest-300 transition-colors hover:border-harvest-500 hover:text-harvest-400"
-            >
-              Are you a producer? Sell with us →
-            </Link>
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
+              <div>
+                <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-harvest-500">
+                  Our story
+                </p>
+                <h2 className="font-display mb-6 text-4xl font-bold text-white sm:text-5xl">
+                  An engineer who traded blueprints for dough.
+                </h2>
+                <p className="mb-4 text-base leading-relaxed text-forest-300">
+                  {PRODUCER.story?.split(". ").slice(0, 3).join(". ")}.
+                </p>
+                <p className="mb-8 text-base leading-relaxed text-forest-300">
+                  {PRODUCER.story?.split(". ").slice(3).join(". ")}
+                </p>
+                <Link
+                  href={`/producers/${PRODUCER.slug}`}
+                  className="inline-flex items-center gap-2 rounded-2xl bg-harvest-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-harvest-600"
+                >
+                  Meet the baker <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+              <div className="relative h-80 overflow-hidden rounded-3xl lg:h-[480px]">
+                <Image
+                  src="https://images.unsplash.com/photo-1556471013-0001958d2702?w=800&q=80"
+                  alt="Baker scoring sourdough loaves before the morning bake"
+                  fill
+                  className="object-cover object-center"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── HOW IT WORKS ───────────────────────────────────────── */}
       <section className="section-pad bg-cream">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-harvest-600">
-              Simple as Sunday morning
+              No shortcuts, ever
             </p>
             <h2 className="font-display text-4xl font-bold text-gray-900">
               How {config.brand.name} works
@@ -262,11 +273,11 @@ export default function HomePage() {
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900">
-                  Next-day delivery
+                  Morning delivery, Lincolnshire
                 </h4>
                 <p className="text-sm text-gray-500">
-                  Order by 10pm, receive the next morning across the East
-                  Midlands.
+                  Order before 6pm and receive your bread the following morning,
+                  dispatched straight from the oven.
                 </p>
               </div>
             </div>
@@ -275,9 +286,12 @@ export default function HomePage() {
                 <RefreshCw className="h-6 w-6 text-forest-700" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900">Fresh guarantee</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Weekly subscription
+                </h4>
                 <p className="text-sm text-gray-500">
-                  Not happy? We'll replace or refund — no questions asked.
+                  Subscribe for four loaves a week and never run out. Free
+                  delivery included. Pause or cancel with 48 hours&apos; notice.
                 </p>
               </div>
             </div>
@@ -286,10 +300,12 @@ export default function HomePage() {
                 <ShieldCheck className="h-6 w-6 text-forest-700" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900">Secure payments</h4>
+                <h4 className="font-semibold text-gray-900">
+                  No commercial yeast, ever
+                </h4>
                 <p className="text-sm text-gray-500">
-                  Stripe-powered checkout. Your card details never touch our
-                  servers.
+                  Our sourdoughs are leavened only by our 8-year-old wild
+                  starter. No additives, no improvers, no shortcuts.
                 </p>
               </div>
             </div>
@@ -338,7 +354,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-forest-800 py-24">
         <div className="absolute inset-0 opacity-10">
           <Image
-            src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1600&q=60"
+            src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=1600&q=60"
             alt=""
             fill
             className="object-cover"
@@ -346,17 +362,17 @@ export default function HomePage() {
         </div>
         <div className="relative mx-auto max-w-3xl px-4 text-center">
           <h2 className="font-display mb-4 text-4xl font-bold text-white sm:text-5xl">
-            Ready to taste the difference?
+            Real bread. The kind you remember.
           </h2>
           <p className="mb-8 text-lg text-forest-300">
-            Join thousands of East Midlands households who have made the switch
-            to real, local food.
+            Wood-fired, slow-fermented, and dispatched fresh every morning. Join
+            over 1,200 Lincolnshire households who&apos;ve switched.
           </p>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 rounded-2xl bg-harvest-500 px-10 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-harvest-600 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-2xl bg-harvest-500 px-10 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-harvest-600"
           >
-            Start shopping <ArrowRight className="h-5 w-5" />
+            Shop our bread <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
       </section>
