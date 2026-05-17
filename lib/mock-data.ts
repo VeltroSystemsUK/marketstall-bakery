@@ -19,9 +19,8 @@ export const MOCK_PRODUCERS: Producer[] = [
     },
     categories: ["bread", "pastries"],
     images: {
-      banner:
-        "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1400&q=80",
-      logo: "https://images.unsplash.com/photo-1556471013-0001958d2702?w=200&q=80",
+      banner: "/images/hero.jpg",
+      logo: "/images/sourdough.jpg",
     },
     status: "approved",
     commissionRate: 0,
@@ -270,8 +269,7 @@ export const MOCK_ORDERS: Order[] = [
         price: 550,
         quantity: 2,
         unit: "800g loaf",
-        imageUrl:
-          "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80",
+        imageUrl: "/images/hero.jpg",
       },
       {
         productId: "prod-3",
@@ -281,8 +279,7 @@ export const MOCK_ORDERS: Order[] = [
         price: 650,
         quantity: 1,
         unit: "pack of 4",
-        imageUrl:
-          "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&q=80",
+        imageUrl: "/images/hero.jpg",
       },
     ],
     producerIds: ["producer-1"],
