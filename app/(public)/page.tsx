@@ -108,12 +108,6 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="h-10 w-6 rounded-full border-2 border-white/40 p-1">
-            <div className="h-2 w-full rounded-full bg-white/60" />
-          </div>
-        </div>
       </section>
 
       {/* ── STATS BAR ─────────────────────────────────────────── */}
@@ -353,12 +347,7 @@ export default function HomePage() {
       {/* ── CTA ────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-forest-800 py-24">
         <div className="absolute inset-0 opacity-10">
-          <Image
-            src="/images/hero.jpg"
-            alt=""
-            fill
-            className="object-cover"
-          />
+          <Image src="/images/hero.jpg" alt="" fill className="object-cover" />
         </div>
         <div className="relative mx-auto max-w-3xl px-4 text-center">
           <h2 className="font-display mb-4 text-4xl font-bold text-white sm:text-5xl">
