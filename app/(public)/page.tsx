@@ -65,7 +65,11 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <section
+        className="relative flex min-h-screen items-center justify-center overflow-hidden"
+        data-demo-img="hero"
+        data-demo-img-label="Hero background"
+      >
         <Image
           src="/images/hero.jpg"
           alt="Freshly baked artisan sourdough loaves on a wooden board"
@@ -136,10 +140,16 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div data-reveal className="mb-10 flex items-end justify-between">
             <div>
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-harvest-600">
+              <p
+                data-demo-edit="products-eyebrow"
+                className="mb-2 text-sm font-semibold uppercase tracking-widest text-harvest-600"
+              >
                 Fresh from the oven
               </p>
-              <h2 className="font-display text-4xl font-bold text-gray-900">
+              <h2
+                data-demo-edit="products-heading"
+                className="font-display text-4xl font-bold text-gray-900"
+              >
                 Today&apos;s bake
               </h2>
             </div>
@@ -153,7 +163,7 @@ export default function HomePage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED_PRODUCTS.map((product, i) => (
               <div key={product.id} data-reveal data-reveal-delay={i * 80}>
-                <ProductCard product={product} />
+                <ProductCard product={product} demoKey={`product-${i}`} />
               </div>
             ))}
           </div>
@@ -203,7 +213,10 @@ export default function HomePage() {
                 <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-harvest-500">
                   Our story
                 </p>
-                <h2 className="font-display mb-6 text-4xl font-bold text-white sm:text-5xl">
+                <h2
+                  data-demo-edit="story-heading"
+                  className="font-display mb-6 text-4xl font-bold text-white sm:text-5xl"
+                >
                   An engineer who traded blueprints for dough.
                 </h2>
                 <p className="mb-4 text-base leading-relaxed text-forest-300">
@@ -222,6 +235,8 @@ export default function HomePage() {
               <div
                 data-reveal
                 data-reveal-delay="150"
+                data-demo-img="story"
+                data-demo-img-label="Story photo"
                 className="relative h-80 overflow-hidden rounded-3xl lg:h-[480px]"
               >
                 <Image
@@ -286,10 +301,16 @@ export default function HomePage() {
                 <Truck className="h-6 w-6 text-forest-700" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900">
+                <h4
+                  data-demo-edit="trust-1-title"
+                  className="font-semibold text-gray-900"
+                >
                   Morning delivery, Lincolnshire
                 </h4>
-                <p className="text-sm text-gray-500">
+                <p
+                  data-demo-edit="trust-1-body"
+                  className="text-sm text-gray-500"
+                >
                   Order before 6pm and receive your bread the following morning,
                   dispatched straight from the oven.
                 </p>
@@ -304,10 +325,16 @@ export default function HomePage() {
                 <RefreshCw className="h-6 w-6 text-forest-700" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900">
+                <h4
+                  data-demo-edit="trust-2-title"
+                  className="font-semibold text-gray-900"
+                >
                   Weekly subscription
                 </h4>
-                <p className="text-sm text-gray-500">
+                <p
+                  data-demo-edit="trust-2-body"
+                  className="text-sm text-gray-500"
+                >
                   Subscribe for four loaves a week and never run out. Free
                   delivery included. Pause or cancel with 48 hours&apos; notice.
                 </p>
@@ -322,10 +349,16 @@ export default function HomePage() {
                 <ShieldCheck className="h-6 w-6 text-forest-700" />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900">
+                <h4
+                  data-demo-edit="trust-3-title"
+                  className="font-semibold text-gray-900"
+                >
                   No commercial yeast, ever
                 </h4>
-                <p className="text-sm text-gray-500">
+                <p
+                  data-demo-edit="trust-3-body"
+                  className="text-sm text-gray-500"
+                >
                   Our sourdoughs are leavened only by our 8-year-old wild
                   starter. No additives, no improvers, no shortcuts.
                 </p>
@@ -389,7 +422,7 @@ export default function HomePage() {
           >
             Real bread. The kind you remember.
           </h2>
-          <p className="mb-8 text-lg text-forest-300">
+          <p data-demo-edit="cta-body" className="mb-8 text-lg text-forest-300">
             Wood-fired, slow-fermented, and dispatched fresh every morning. Join
             over 1,200 Lincolnshire households who&apos;ve switched.
           </p>
